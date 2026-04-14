@@ -116,9 +116,9 @@ def compute_worksheet(step1: float, step2: float, step3: float) -> dict:
     lines[7] = min(lines[1], lines[6])
 
     # ------------------------------------------------------------------
-    # Line 8: Enter the LARGER of line 5 or line 7
+    # Line 8: Enter the SMALLER of line 5 or line 7
     # ------------------------------------------------------------------
-    lines[8] = max(lines[5], lines[7])
+    lines[8] = min(lines[5], lines[7])
 
     # ------------------------------------------------------------------
     # Line 9: Subtract line 8 from line 7. If zero or less, enter -0-.
@@ -154,9 +154,9 @@ def compute_worksheet(step1: float, step2: float, step3: float) -> dict:
     lines[14] = min(lines[1], lines[13])
 
     # ------------------------------------------------------------------
-    # Line 15: Enter the LARGER of line 5 or line 14
+    # Line 15: Add lines 5 and 9
     # ------------------------------------------------------------------
-    lines[15] = max(lines[5], lines[14])
+    lines[15] = lines[5] + lines[9]
 
     # ------------------------------------------------------------------
     # Line 16: Subtract line 15 from line 14. If zero or less, enter -0-.
@@ -181,10 +181,10 @@ def compute_worksheet(step1: float, step2: float, step3: float) -> dict:
     lines[19] = lines[9] + lines[17]
 
     # ------------------------------------------------------------------
-    # Line 20: Subtract line 19 from line 4. If zero or less, enter -0-.
+    # Line 20: Subtract line 19 from line 10. If zero or less, enter -0-.
     #          Remaining preferential income that will be taxed at 20%.
     # ------------------------------------------------------------------
-    lines[20] = max(0.0, lines[4] - lines[19])
+    lines[20] = max(0.0, lines[10] - lines[19])
 
     # ------------------------------------------------------------------
     # Line 21: Multiply line 20 by 20% (0.20)
@@ -229,19 +229,19 @@ def print_worksheet(step1: float, step2: float, step3: float) -> None:
         5:  "Subtract line 4 from line 1 (not less than -0-) — ordinary income",
         6:  "0% rate threshold — Single 2025 ($48,350)",
         7:  "Smaller of line 1 or line 6",
-        8:  "Larger of line 5 or line 7",
+        8:  "Smaller of line 5 or line 7",
         9:  "Subtract line 8 from line 7 (not less than -0-) — taxed at 0%",
         10: "Smaller of line 1 or line 4",
         11: "Enter the amount from line 9",
         12: "Subtract line 11 from line 10 (not less than -0-)",
         13: "15% rate upper threshold — Single 2025 ($533,400)",
         14: "Smaller of line 1 or line 13",
-        15: "Larger of line 5 or line 14",
+        15: "Add lines 5 and 9",
         16: "Subtract line 15 from line 14 (not less than -0-)",
         17: "Smaller of line 12 or line 16 — taxed at 15%",
         18: "Multiply line 17 × 15%",
         19: "Add lines 9 and 17",
-        20: "Subtract line 19 from line 4 (not less than -0-) — taxed at 20%",
+        20: "Subtract line 19 from line 10 (not less than -0-) — taxed at 20%",
         21: "Multiply line 20 × 20%",
         22: "Tax on line 5 using 2025 Tax Rate Schedules (ordinary income tax)",
         23: "Add lines 18, 21, and 22 — total tax at preferential rates",
